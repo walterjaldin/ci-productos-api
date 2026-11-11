@@ -38,4 +38,8 @@ app.delete('/productos/:id', (req, res) => {
   res.status(204).send();
 });
 
+app.get('/productos-total', (req, res) => {
+  res.status(200).json({ total: service.listar().length });
+});
+
 module.exports = app;
