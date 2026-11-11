@@ -50,4 +50,11 @@ describe('API /productos (integracion)', () => {
     expect((await request(app).delete('/productos/1')).statusCode).toBe(204);
     expect((await request(app).delete('/productos/1')).statusCode).toBe(404);
   });
+
+  test('GET /productos-total retorna la cantidad de productos', async () => {
+    await request(app).post('/productos').send({ nombre: 'Laptop', precio: 1200 });
+    const res = await request(app).get('/productos-total');
+    expect(res.statusCode).toBe(200);
+    expect(res.body.total).toBe(1);
+  });
 });
